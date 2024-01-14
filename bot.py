@@ -57,15 +57,15 @@ class Bot(Client):
             except Exception as e:
                 self.LOGGER(__name__).warning(e)
                 self.LOGGER(__name__).warning(
-                    f"Pastikan @{self.username} "
-                    f"menjadi Admin di FORCE_SUB_{key}\n\n"
+                    f"Make sure @{self.username} "
+                    f"becomes an admin in FORCE_SUB_{key}\n\n"
                 )
                 exit()
 
         try:
             db_channel = await self.get_chat(CHANNEL_DB)
             self.db_channel = db_channel
-            await self.send_message(chat_id=db_channel.id, text="Bot Aktif!\n\n")
+            await self.send_message(chat_id=db_channel.id, text="Bot Active!\n\n")
             self.LOGGER(__name__).info(
                 "CHANNEL_DB Detected!\n"
                 f"  Title: {db_channel.title}\n"
@@ -74,15 +74,15 @@ class Bot(Client):
         except Exception as e:
             self.LOGGER(__name__).warning(e)
             self.LOGGER(__name__).warning(
-                f"Pastikan @{self.username} "
-                "menjadi Admin di CHANNEL_DB\n\n"
+                f"Make sure @{self.username} "
+                "becomes an admin in CHANNEL_DB\n\n"
             )
             exit()
 
         self.LOGGER(__name__).info(
-            "Bot Aktif!\n\n"
+            "Bot Active!\n\n"
         )
 
     async def stop(self, *args):
         await super().stop()
-        self.LOGGER(__name__).info("Bot Berhenti!\n\n")
+        self.LOGGER(__name__).info("Bot Stopped!\n\n")

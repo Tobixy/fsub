@@ -1,22 +1,19 @@
-# Codexbotz 
-# @mrismanaziz
 
 
 from os import environ
 from dotenv import load_dotenv
 from distutils.util import strtobool
 from logging.handlers import RotatingFileHandler
-from logging import(
-    basicConfig, 
-    INFO, 
-    WARNING, 
-    StreamHandler, 
+from logging import (
+    basicConfig,
+    INFO,
+    WARNING,
+    StreamHandler,
     getLogger,
-    Logger
+    Logger,
 )
 
 load_dotenv("config.env")
-
 
 BOT_TOKEN = environ.get("BOT_TOKEN", "")
 
@@ -39,30 +36,28 @@ while True:
 BUTTON_ROW = int(environ.get("BUTTON_ROW", "3"))
 BUTTON_TITLE = environ.get("BUTTON_TITLE", "Join")
 
-
 START_MESSAGE = environ.get(
     "START_MESSAGE",
-    "Halo {mention}!"
+    "Hello {mention}!"
     "\n\n"
-    "Saya dapat menyimpan file pribadi di Channel tertentu dan pengguna lain dapat mengaksesnya dari link khusus.",
+    "I can store private files in a specific Channel, and other users can access them through a special link.",
 )
 FORCE_MESSAGE = environ.get(
     "FORCE_MESSAGE",
-    "Halo {mention}!"
+    "Hello {mention}!"
     "\n\n"
-    "Anda harus bergabung di Channel/Group terlebih dahulu untuk melihat file yang saya bagikan."
+    "You must join the Channel/Group first to view the files I share."
     "\n\n"
-    "Silakan Join Ke Channel/Group terlebih dahulu.",
+    "Please join the Channel/Group first.",
 )
 
 try:
     ADMINS = [int(x) for x in (environ.get("ADMINS", "").split())]
 except ValueError:
-    raise Exception("Daftar Admin Anda tidak berisi User ID Telegram yang valid.")
-    
+    raise Exception("Your Admins list does not contain valid Telegram User IDs.")
+
 CUSTOM_CAPTION = environ.get("CUSTOM_CAPTION", None)
 DISABLE_BUTTON = strtobool(environ.get("DISABLE_BUTTON", "False"))
-
 
 LOGS_FILE = "logs.txt"
 basicConfig(
@@ -74,5 +69,7 @@ basicConfig(
     ],
 )
 getLogger("pyrogram").setLevel(WARNING)
+
+
 def LOGGER(name: str) -> Logger:
     return getLogger(name)

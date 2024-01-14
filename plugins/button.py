@@ -1,7 +1,3 @@
-# CodeXBotz 
-# mrismanaziz
-# devolart
-
 
 from config import FORCE_SUB_, BUTTON_ROW, BUTTON_TITLE
 
@@ -12,8 +8,8 @@ def start_button(client):
     if not FORCE_SUB_:
         buttons = [
             [
-                InlineKeyboardButton(text="Bantuan", callback_data="help"),
-                InlineKeyboardButton(text="Tutup", callback_data="close"),
+                InlineKeyboardButton(text="Help", callback_data="help"),
+                InlineKeyboardButton(text="Close", callback_data="close"),
             ],
         ]
         return buttons
@@ -31,10 +27,10 @@ def start_button(client):
 
     buttons = [
         [
-            InlineKeyboardButton(text="Bantuan", callback_data="help"),
+            InlineKeyboardButton(text="Help", callback_data="help"),
         ],
     ] + dynamic_button + [
-        [InlineKeyboardButton(text="Tutup", callback_data="close")],
+        [InlineKeyboardButton(text="Close", callback_data="close")],
     ]
     return buttons
 
@@ -55,7 +51,7 @@ def fsub_button(client, message):
         try:
             dynamic_button.append([
                 InlineKeyboardButton(
-                    text="Coba Lagi",
+                    text="Try Again",
                     url=f"https://t.me/{client.username}?start={message.command[1]}",
                 )
             ])

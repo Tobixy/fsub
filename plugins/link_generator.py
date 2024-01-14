@@ -1,5 +1,3 @@
-# CodeXBotz
-# mrismanaziz
 
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
@@ -14,7 +12,7 @@ async def batch(client: Bot, message: Message):
     while True:
         try:
             first_message = await client.ask(
-                text="Teruskan pesan pertama atau paste link post dari CHANNEL_DB",
+                text="Forward the first message or paste the link to a post from CHANNEL_DB",
                 chat_id=message.from_user.id,
                 filters=(filters.forwarded | (filters.text & ~filters.forwarded)),
                 timeout=60,
@@ -33,7 +31,7 @@ async def batch(client: Bot, message: Message):
     while True:
         try:
             second_message = await client.ask(
-                text="Teruskan pesan akhir atau paste link post dari CHANNEL_DB",
+                text="Forward the last message or paste the link to a post from CHANNEL_DB",
                 chat_id=message.from_user.id,
                 filters=(filters.forwarded | (filters.text & ~filters.forwarded)),
                 timeout=60,
@@ -56,7 +54,7 @@ async def batch(client: Bot, message: Message):
         [
             [
                 InlineKeyboardButton(
-                    "Bagikan Link", url=f"https://telegram.me/share/url?url={link}"
+                    "Share Link", url=f"https://telegram.me/share/url?url={link}"
                 )
             ]
         ]
@@ -73,7 +71,7 @@ async def link_generator(client: Bot, message: Message):
     while True:
         try:
             channel_message = await client.ask(
-                text="Teruskan pesan atau paste link post dari CHANNEL_DB",
+                text="Forward the message or paste the link to a post from CHANNEL_DB",
                 chat_id=message.from_user.id,
                 filters=(filters.forwarded | (filters.text & ~filters.forwarded)),
                 timeout=60,
@@ -95,7 +93,7 @@ async def link_generator(client: Bot, message: Message):
         [
             [
                 InlineKeyboardButton(
-                    "Bagikan Link", url=f"https://telegram.me/share/url?url={link}"
+                    "Share Link", url=f"https://telegram.me/share/url?url={link}"
                 )
             ]
         ]

@@ -1,7 +1,6 @@
 # CodeXBotz
 # mrismanaziz
 
-
 from os import remove
 from os.path import exists
 
@@ -23,5 +22,5 @@ async def logs(client: Bot, message: Message):
         except Exception as e:
             remove(logs_path)
             LOGGER(__name__).warning(e)
-    elif not path.exists(logs_path):
-        await message.reply_text("Tidak ada logs yang ditemukan!")
+    elif not exists(logs_path):
+        await message.reply_text("No logs found!")

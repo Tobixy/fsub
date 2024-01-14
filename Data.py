@@ -1,44 +1,43 @@
-# CodeXBotz 
-# mrismanaziz
+
 
 from pyrogram.types import InlineKeyboardButton
 
 class Data:
     HELP = """
-Pengguna Bot
-  /start - Mulai
-  /about - Tentang
-  /help - Bantuan
-  /ping - Latensi Bot
-  /uptime - Waktu Aktif
- 
-Admin Bot
-  /logs - Log
-  /users - Statistik Pengguna
-  /batch - Multi Post (Satu Link)
-  /broadcast - Pesan Siaran
+Bot Users
+  /start - Start
+  /about - About
+  /help - Help
+  /ping - Bot Latency
+  /uptime - Uptime
+
+Bot Admins
+  /logs - Logs
+  /users - User Statistics
+  /batch - Multi Post (Single Link)
+  /broadcast - Broadcast Message
 """
 
     close = [
-        [InlineKeyboardButton("Tutup", callback_data="close")]
+        [InlineKeyboardButton("Close", callback_data="close")]
     ]
 
     mbuttons = [
         [
-            InlineKeyboardButton("Bantuan", callback_data="help"),
-            InlineKeyboardButton("Tutup", callback_data="close")
+            InlineKeyboardButton("Help", callback_data="help"),
+            InlineKeyboardButton("Close", callback_data="close")
         ],
     ]
 
     buttons = [
         [
-            InlineKeyboardButton("Tentang", callback_data="about"),
-            InlineKeyboardButton("Tutup", callback_data="close")
+            InlineKeyboardButton("About", callback_data="about"),
+            InlineKeyboardButton("Close", callback_data="close")
         ],
     ]
 
     ABOUT = """
-@{} adalah Bot untuk menyimpan postingan atau file yang dapat diakses melalui link khusus.
+@{} is a Bot for storing posts or files that can be accessed through a special link.
 
   Framework: <a href='https://docs.pyrogram.org'>Pyrogram</a>
   Re-Code From: <a href='https://github.com/mrismanaziz/File-Sharing-Man'>File-Sharing-Man</a>

@@ -1,5 +1,3 @@
-# CodeXBotz 
-# mrismanaziz
 
 import asyncio
 
@@ -51,7 +49,7 @@ async def _human_time_duration(seconds):
     return ", ".join(parts)
 
 
-@Bot.on_message(filters.command("start") & filters.private & subs )
+@Bot.on_message(filters.command("start") & filters.private & subs)
 async def start_command(client: Bot, message: Message):
     id = message.from_user.id
     if not await present_user(id):
@@ -88,7 +86,7 @@ async def start_command(client: Bot, message: Message):
                 ids = [int(int(argument[1]) / abs(client.db_channel.id))]
             except Exception:
                 return
-        temp_msg = await message.reply("Sedang diproses...")
+        temp_msg = await message.reply("Processing...")
         try:
             messages = await get_messages(client, ids)
         except Exception:
@@ -164,10 +162,9 @@ async def not_joined(client: Bot, message: Message):
 
 @Bot.on_message(filters.command('users') & filters.private & filters.user(ADMINS))
 async def get_users(client: Bot, message: Message):
-    msg = await client.send_message(message.chat.id, "Mengecek...")
+    msg = await client.send_message(message.chat.id, "Checking...")
     users = await full_userbase()
-    await msg.edit(f"{len(users)} Pengguna Bot")
-
+    await msg.edit(f"{len(users)} Bot Users")
 
 
 @Bot.on_message(filters.command("broadcast") & filters.user(ADMINS))
@@ -180,7 +177,7 @@ async def send_text(client: Bot, message: Message):
         unsuccessful = 0
 
         please_wait = await message.reply(
-            "Mengirim pesan siaran..."
+            "Sending broadcast message..."
         )
         for chat_id in query:
             try:
@@ -196,16 +193,16 @@ async def send_text(client: Bot, message: Message):
                 pass
             total += 1
         status = f"""
-Status Broadcast
-Pengguna: {total}
-Berhasil: {successful}
-Gagal: {unsuccessful}
-* Termasuk Bot Admins
+Broadcast Status
+Users: {total}
+Successful: {successful}
+Failed: {unsuccessful}
+* Including Bot Admins
 """
         return await please_wait.edit(status)
     else:
         msg = await message.reply(
-            "Balas ke pesan!"
+            "Reply to a message!"
         )
         await msg.delete()
 
@@ -216,7 +213,7 @@ async def ping_pong(client, m: Message):
     m_reply = await m.reply_text("...")
     delta_ping = time() - start
     await m_reply.edit_text(
-        f"Hasil: {delta_ping * 1000:.3f}ms"
+        f"Result: {delta_ping * 1000:.3f}ms"
     )
 
 
@@ -226,6 +223,6 @@ async def get_uptime(client, m: Message):
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
     await m.reply_text(
-        f"Waktu Aktif: {uptime}\n"
-        f"Sejak: {START_TIME_ISO}"
+        f"Uptime: {uptime}\n"
+        f"Since: {START_TIME_ISO}"
     )
